@@ -21,3 +21,7 @@ Voor deze opdracht heb je een loop nodig, als je niet meer weet hoe deze werken,
 letter = input("Geef een letter:")
 hoogte = int(input("Geef een hoogte:"))
 breedte = int(input("Geef een breedte:"))
+x = 0
+while x != hoogte:
+    print(breedte * letter)
+    x += 1

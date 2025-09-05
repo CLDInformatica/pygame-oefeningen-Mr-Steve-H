@@ -13,3 +13,16 @@ Als je niet meer weet hoe alles werkt, zoek het dan even op!
 '''
 
 toetscijfer = float(input("Geef een cijfer:"))
+if toetscijfer < 0 or toetscijfer >10:
+    print('Cijfer is ongeldig')
+else:
+    print('Dankjewel')
+    if toetscijfer > 8:
+        print('wow, dat is heel hoog')
+    elif toetscijfer > 5.5:
+        print('Prima, een voldoende!')
+    elif toetscijfer > 3:
+        print('Kon slechter, maar mag wel beter volgende keer...')
+    else:
+        print('Wat ging hier mis')
+        11
