@@ -26,7 +26,7 @@ screen = pygame.display.set_mode((800, 400))
 pygame.display.set_caption('Voetbal game!')
 clock = pygame.time.Clock()
 running = True
-test_font = pygame.font.Font("fonts/horror.ttf", 50)
+test_font = pygame.font.Font("fonts/Voetbal.ttf", 50)
 
 voetbal_surface = pygame.image.load("graphics/voetbal.png")
 tekst_surface = test_font.render("Voetbal game", False, "green")
