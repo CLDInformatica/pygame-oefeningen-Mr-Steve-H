@@ -30,8 +30,14 @@ clock = pygame.time.Clock()
 running = True
 test_font = pygame.font.Font("Opdrachten/PyGame/Les2/fonts/Voetbal.ttf", 50)
 
+background = pygame.Surface((800, 400))
+background.fill("Blue")
+grass = pygame.Surface((800, 100))
+grass.fill("Dark green")
 voetbal_surface = pygame.image.load("Opdrachten/PyGame/Les2/graphics/voetbal.png")
-tekst_surface = test_font.render("Voetbal game", False, "green")
+tekst_surface = test_font.render("Score", False, "brown")
+score = test_font.render('0 | 0', False, 'white' )
+goal = pygame.image.load("Opdrachten/PyGame/Les2/graphics/147630.svg")
 
 while running:
 
@@ -39,8 +45,12 @@ while running:
     if event.type == pygame.QUIT:
       running = False
 
-  screen.blit(tekst_surface, (200, 100))
-  screen.blit(voetbal_surface, (200, 200))
+  screen.blit(background, (0,0))
+  screen.blit(grass, (0, 300))
+  screen.blit(tekst_surface, (10, 10))
+  screen.blit(voetbal_surface, (375, 325))
+  screen.blit(score, (10, 60))
+  
   
   pygame.display.update()
   clock.tick(60)
