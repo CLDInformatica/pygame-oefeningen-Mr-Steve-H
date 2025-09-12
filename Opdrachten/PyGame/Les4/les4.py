@@ -34,12 +34,18 @@ background_surface = pygame.Surface((800, 400))
 background_surface.fill("white")
 
 weg_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/weg.png").convert()
+weg_rect = weg_surface.get_rect(bottom = 290)
 
 auto_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/auto.png").convert_alpha()
-auto_rect = auto_surface.get_rect(bottom = 350)
+auto_rect = auto_surface.get_rect(bottom = 290)
 
 obstakel_surface = pygame.image.load("Opdrachten/PyGame/Les4/graphics/obstakel.png").convert_alpha()
 obstakel_rect = obstakel_surface.get_rect(bottomleft = (625, 280))
+
+game = pygame.image.load("Opdrachten/PyGame/Les4/graphics/gameover.png")
+scale = (400, 400)
+game = pygame.transform.scale(game, scale)
+gameover = False
 
 while running:
 
@@ -47,14 +53,20 @@ while running:
     if event.type == pygame.QUIT:
       running = False
 
+
   screen.blit(background_surface, (0, 0))
-  screen.blit(weg_surface, (0, 75))
+  screen.blit(weg_surface, weg_rect)
   screen.blit(obstakel_surface, obstakel_rect)
-  
-  auto_rect.left += 2
-  if auto_rect.left > 800:
-    auto_rect.right = 0
   screen.blit(auto_surface, auto_rect)
+
+  if auto_rect.colliderect(obstakel_rect):
+   gameover = True
+  else:
+    auto_rect.left += 2
+
+  if gameover == True:
+    auto_rect.right = 0
+    screen.blit(game, (200, 0))
 
   pygame.display.update()
   clock.tick(60)
