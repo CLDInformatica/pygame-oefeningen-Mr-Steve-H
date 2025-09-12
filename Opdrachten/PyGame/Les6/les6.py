@@ -7,7 +7,7 @@
 #   - Laat pikachu naar links lopen met het linker pijltje
 #   - Zorg dat pikachu niet uit het scherm kan lopen
 
-
+  
 # Slides: https://docs.google.com/presentation/d/1tbN7TAxkqwNQWe_fMOwF1KD4o2V5aJktcSooPF9WZaY/edit?usp=sharing
 import os
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
@@ -36,8 +36,16 @@ while True:
       sys.exit() 
       
     if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_SPACE:
+      if event.key == pygame.K_SPACE and pikachu_rect.bottom == 300:
         zwaartekracht = -20
+    if pikachu_rect.right <= 400:
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_RIGHT:
+          pikachu_rect.right += 10
+    if pikachu_rect.left >= 0:
+      if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_LEFT:
+          pikachu_rect.right -= 10
 
   screen.blit(background_surface, (0, 0))
  
