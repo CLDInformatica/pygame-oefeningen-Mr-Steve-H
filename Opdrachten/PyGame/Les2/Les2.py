@@ -21,6 +21,7 @@ import os
 os.environ['SDL_AUDIODRIVER'] = 'dsp'
 
 import pygame
+import sys
 
 pygame.init()
 
@@ -38,6 +39,13 @@ voetbal_surface = pygame.image.load("Opdrachten/PyGame/Les2/graphics/voetbal.png
 tekst_surface = test_font.render("Score", False, "brown")
 score = test_font.render('0 | 0', False, 'white' )
 goal = pygame.image.load("Opdrachten/PyGame/Les2/graphics/147630.svg")
+Scale = (100, 150)
+goal = pygame.transform.scale(goal, Scale)
+goalflip = pygame.transform.flip(goal, True, False)
+player = pygame.image.load("Opdrachten/PyGame/Les2/graphics/Character01.webp")
+Scale1 = (75, 75)
+player = pygame.transform.scale(player, Scale1)
+player2 = pygame.transform.flip(player, True, False)
 
 while running:
 
@@ -50,6 +58,10 @@ while running:
   screen.blit(tekst_surface, (10, 10))
   screen.blit(voetbal_surface, (375, 325))
   screen.blit(score, (10, 60))
+  screen.blit(goal, (700, 250))
+  screen.blit(goalflip, (0, 250))
+  screen.blit(player2, (100, 325))
+  screen.blit(player, (625, 325))
   
   
   pygame.display.update()
