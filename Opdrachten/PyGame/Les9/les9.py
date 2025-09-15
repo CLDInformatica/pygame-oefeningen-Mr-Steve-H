@@ -21,11 +21,13 @@ background_surface.fill("white")
 
 speler_stil1_surface = pygame.image.load("Opdrachten/PyGame/Les9/graphics/speler_stil1.png").convert_alpha()
 speler_stil2_surface = pygame.image.load("Opdrachten/PyGame/Les9/graphics/speler_stil2.png").convert_alpha()
-animaties = [speler_stil1_surface, speler_stil2_surface]
 
-index = 0
+
+
 speler_jump_surface = pygame.image.load("Opdrachten/PyGame/Les9/graphics/speler_jump.png").convert_alpha()
 speler_rect = speler_stil1_surface.get_rect(midbottom = (200, 300))
+animaties = [speler_stil1_surface, speler_stil2_surface, speler_jump_surface]
+index = 0
 
 zwaartekracht = 0
 
@@ -39,6 +41,9 @@ while True:
     if event.type == pygame.KEYDOWN:
       if event.key == pygame.K_SPACE and speler_rect.bottom >= 300:
         zwaartekracht = -20
+        if speler_rect.bottom >=300:
+          index = 2
+
         
   screen.blit(background_surface, (0, 0))
 
@@ -48,9 +53,9 @@ while True:
   if speler_rect.bottom >= 300:
     speler_rect.bottom = 300
 
-  index += 0.05
+    index += 0.05
   
-  if index > len(animaties):
+  if index > len(animaties)-1:
     index = 0
     
   screen.blit(animaties[int(index)], speler_rect)
