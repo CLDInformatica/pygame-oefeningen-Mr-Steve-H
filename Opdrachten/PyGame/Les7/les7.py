@@ -22,6 +22,9 @@ clock = pygame.time.Clock()
 
 background_surface = pygame.Surface((400, 300))
 background_surface.fill("white")
+dead_surface = pygame.Surface((400, 300))
+dead_surface.fill("black")
+
 
 enemy_surface = font.render("Dood!", False, "red")
 enemy_rect = enemy_surface.get_rect(center= (300, 200))
@@ -39,15 +42,16 @@ while True:
       pygame.quit()
       sys.exit() 
       
-    if event.type == pygame.KEYDOWN:
-      if event.key == pygame.K_SPACE and pikachu_rect.bottom >= 300:
-        zwaartekracht = -20
   if game_actief == True:
     screen.blit(background_surface, (0, 0))
     screen.blit(enemy_surface, enemy_rect)
+    if event.type == pygame.KEYDOWN:
+      if event.key == pygame.K_UP and pikachu_rect.bottom >= 300:
+        zwaartekracht = -20
 
-    zwaartekracht += 1
     pikachu_rect.y += zwaartekracht
+    zwaartekracht += 1
+    
 
     if pikachu_rect.bottom >= 300:
       pikachu_rect.bottom = 300
@@ -63,6 +67,15 @@ while True:
     if pikachu_rect.colliderect(enemy_rect):
       game_actief = False
   if game_actief == False:
+    pikachu_rect.midbottom = (180, 300)
+    screen.blit(dead_surface, (0,0))
+    screen.blit(pikachu_surface, (pikachu_rect))
+    if pikachu_rect.bottom >= 300:
+      pikachu_rect.bottom = 300
+    if event.type == pygame.KEYDOWN:
+      if event.key == pygame.K_DOWN:
+        game_actief = True
+
 
   pygame.display.update()
   clock.tick(60)
