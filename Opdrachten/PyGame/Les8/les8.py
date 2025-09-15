@@ -12,11 +12,13 @@ os.environ['SDL_AUDIODRIVER'] = 'dsp'
 import pygame, sys
 from pygame.locals import QUIT
 
+start_time = 0
 def score():
-  time = pygame.time.get_ticks()
+  time = pygame.time.get_ticks()//1000 - start_time
   score_surface = font.render(str(time), False, "orange")
   score_rect = score_surface.get_rect(center = (200, 100))
   screen.blit(score_surface, score_rect)
+  
 
 pygame.init()
 screen = pygame.display.set_mode((400, 300))
@@ -50,6 +52,7 @@ while True:
     else:
       if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
         game_actief = True
+        start_time = pygame.time.get_ticks()//1000
         
   if game_actief:
     screen.blit(background_surface, (0, 0))
@@ -70,6 +73,9 @@ while True:
 
     if pikachu_rect.colliderect(enemy_rect):
       game_actief = False
+      score()
+      
+      
     
     screen.blit(pikachu_surface, pikachu_rect)
   else:
